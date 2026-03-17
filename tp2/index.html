@@ -1,0 +1,467 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Formulaire d'inscription</title>
+  <link rel="stylesheet" href="styles.css">
+ 
+  </head>
+  </head>
+  <body>
+    <main class="container">
+      <h1>Formulaire d'inscription</h1>
+      <p class="note">Tous les champs sont obligatoires.</p>
+
+      <form id="inscriptionForm" novalidate>
+        <fieldset>
+          <legend>Informations personnelles</legend>
+          <div class="grid">
+            <div class="field">
+              <label for="nom">Nom</label>
+              <input
+                id="nom"
+                name="nom"
+                type="text"
+                required
+                autocomplete="family-name"
+              />
+              <small class="error-text" id="nom-error"></small>
+            </div>
+
+            <div class="field">
+              <label for="prenom">Prénom</label>
+              <input
+                id="prenom"
+                name="prenom"
+                type="text"
+                required
+                autocomplete="given-name"
+              />
+              <small class="error-text" id="prenom-error"></small>
+            </div>
+
+            <div class="field">
+              <label for="email">Email</label>
+              <input
+                id="email"
+                name="email"
+                type="email"
+                required
+                autocomplete="email"
+              />
+              <small class="error-text" id="email-error"></small>
+            </div>
+
+            <div class="field">
+              <label for="telephone">Téléphone</label>
+              <input
+                id="telephone"
+                name="telephone"
+                type="tel"
+                required
+                autocomplete="tel"
+                pattern="^(?:\\+33|0)[1-9](?:[\\s.-]?\\d{2}){4}$"
+                placeholder="Ex: 0612345678 ou +33612345678"
+              />
+              <small class="error-text" id="telephone-error"></small>
+            </div>
+
+            <div class="field">
+              <label for="dateNaissance">Date de naissance</label>
+              <input
+                id="dateNaissance"
+                name="dateNaissance"
+                type="date"
+                required
+                autocomplete="bday"
+              />
+              <small class="error-text" id="dateNaissance-error"></small>
+            </div>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>Sécurité du compte</legend>
+          <div class="grid">
+            <div class="field">
+              <label for="motDePasse">Mot de passe</label>
+              <input
+                id="motDePasse"
+                name="motDePasse"
+                type="password"
+                required
+                minlength="8"
+                autocomplete="new-password"
+                pattern="^(?=.*[A-Z])(?=.*\\d).{8,}$"
+                placeholder="Minimum 8 caractères, 1 majuscule, 1 chiffre"
+              />
+              <small class="error-text" id="motDePasse-error"></small>
+            </div>
+
+            <div class="field">
+              <label for="confirmationMotDePasse"
+                >Confirmation du mot de passe</label
+              >
+              <input
+                id="confirmationMotDePasse"
+                name="confirmationMotDePasse"
+                type="password"
+                required
+                autocomplete="new-password"
+              />
+              <small
+                class="error-text"
+                id="confirmationMotDePasse-error"
+              ></small>
+            </div>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>Profil</legend>
+          <div class="grid">
+            <div class="field">
+              <label for="paysSelect">Pays (select)</label>
+              <select
+                id="paysSelect"
+                name="paysSelect"
+                required
+                autocomplete="country-name"
+              >
+                <option value="">Choisir un pays</option>
+                <option value="France">France</option>
+                <option value="Belgique">Belgique</option>
+                <option value="Suisse">Suisse</option>
+                <option value="Canada">Canada</option>
+                <option value="Maroc">Maroc</option>
+                <option value="Tunisie">Tunisie</option>
+              </select>
+              <small class="error-text" id="paysSelect-error"></small>
+            </div>
+
+            <div class="field">
+              <label for="paysDatalist">Pays (datalist)</label>
+              <input
+                id="paysDatalist"
+                name="paysDatalist"
+                list="listePays"
+                required
+                autocomplete="country-name"
+                placeholder="Saisir ou choisir un pays"
+              />
+              <datalist id="listePays">
+                <option value="France"></option>
+                <option value="Belgique"></option>
+                <option value="Suisse"></option>
+                <option value="Canada"></option>
+                <option value="Maroc"></option>
+                <option value="Algérie"></option>
+                <option value="Tunisie"></option>
+                <option value="Espagne"></option>
+                <option value="Allemagne"></option>
+              </datalist>
+              <small class="error-text" id="paysDatalist-error"></small>
+            </div>
+
+            <div class="field field-full">
+              <label>Genre</label>
+              <div class="inline-options" id="genreGroup">
+                <label
+                  ><input
+                    type="radio"
+                    name="genre"
+                    value="femme"
+                    required
+                    autocomplete="sex"
+                  />
+                  Femme</label
+                >
+                <label
+                  ><input
+                    type="radio"
+                    name="genre"
+                    value="homme"
+                    required
+                    autocomplete="sex"
+                  />
+                  Homme</label
+                >
+                <label
+                  ><input
+                    type="radio"
+                    name="genre"
+                    value="autre"
+                    required
+                    autocomplete="sex"
+                  />
+                  Autre</label
+                >
+              </div>
+              <small class="error-text" id="genre-error"></small>
+            </div>
+
+            <div class="field field-full">
+              <label>Centres d'intérêt</label>
+              <div class="inline-options" id="interetsGroup">
+                <label
+                  ><input type="checkbox" name="interets" value="sport" />
+                  Sport</label
+                >
+                <label
+                  ><input type="checkbox" name="interets" value="musique" />
+                  Musique</label
+                >
+                <label
+                  ><input type="checkbox" name="interets" value="technologie" />
+                  Technologie</label
+                >
+                <label
+                  ><input type="checkbox" name="interets" value="voyage" />
+                  Voyage</label
+                >
+              </div>
+              <small class="error-text" id="interets-error"></small>
+            </div>
+
+            <div class="field field-full">
+              <label for="biographie">Biographie</label>
+              <textarea
+                id="biographie"
+                name="biographie"
+                rows="5"
+                maxlength="300"
+                required
+                autocomplete="off"
+                placeholder="Présentez-vous en 300 caractères maximum"
+              ></textarea>
+              <small class="hint">Maximum 300 caractères.</small>
+              <small class="error-text" id="biographie-error"></small>
+            </div>
+
+            <div class="field field-full">
+              <label for="photo">Photo de profil</label>
+              <input
+                id="photo"
+                name="photo"
+                type="file"
+                accept="image/*"
+                required
+                autocomplete="off"
+              />
+              <small class="error-text" id="photo-error"></small>
+            </div>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>Validation</legend>
+          <div class="field field-full">
+            <label>
+              <input
+                id="cgu"
+                name="cgu"
+                type="checkbox"
+                required
+                autocomplete="off"
+              />
+              J'accepte les Conditions Générales d'Utilisation (CGU)
+            </label>
+            <small class="error-text" id="cgu-error"></small>
+          </div>
+        </fieldset>
+
+        <div class="actions">
+          <button type="submit">S'inscrire</button>
+        </div>
+      </form>
+    </main>
+
+    <script>
+      const form = document.getElementById("inscriptionForm");
+      const birthDateInput = document.getElementById("dateNaissance");
+      const passwordInput = document.getElementById("motDePasse");
+      const confirmInput = document.getElementById("confirmationMotDePasse");
+      const interests = Array.from(
+        document.querySelectorAll('input[name="interets"]'),
+      );
+
+      const customMessages = {
+        nom: "Veuillez saisir votre nom.",
+        prenom: "Veuillez saisir votre prénom.",
+        email: {
+          valueMissing: "Veuillez saisir votre adresse email.",
+          typeMismatch: "Veuillez saisir une adresse email valide.",
+        },
+        telephone: {
+          valueMissing: "Veuillez saisir votre numéro de téléphone.",
+          patternMismatch:
+            "Numéro invalide. Format français attendu (ex: 0612345678).",
+        },
+        dateNaissance: {
+          valueMissing: "Veuillez indiquer votre date de naissance.",
+          rangeOverflow: "Vous devez avoir au moins 18 ans pour vous inscrire.",
+        },
+        motDePasse: {
+          valueMissing: "Veuillez saisir un mot de passe.",
+          tooShort: "Le mot de passe doit contenir au moins 8 caractères.",
+          patternMismatch:
+            "Le mot de passe doit contenir 1 majuscule et 1 chiffre minimum.",
+        },
+        confirmationMotDePasse: {
+          valueMissing: "Veuillez confirmer votre mot de passe.",
+          customError: "Les deux mots de passe doivent être identiques.",
+        },
+        paysSelect: "Veuillez sélectionner un pays.",
+        paysDatalist: "Veuillez saisir un pays dans la liste proposée.",
+        biographie: {
+          valueMissing: "Veuillez rédiger une courte biographie.",
+          tooLong: "Votre biographie ne doit pas dépasser 300 caractères.",
+        },
+        photo: "Veuillez ajouter une photo de profil.",
+        cgu: "Vous devez accepter les CGU pour continuer.",
+      };
+
+      function formatDateISO(date) {
+        const y = date.getFullYear();
+        const m = String(date.getMonth() + 1).padStart(2, "0");
+        const d = String(date.getDate()).padStart(2, "0");
+        return `${y}-${m}-${d}`;
+      }
+
+      function setAgeLimit() {
+        const today = new Date();
+        const adultDate = new Date(
+          today.getFullYear() - 18,
+          today.getMonth(),
+          today.getDate(),
+        );
+        birthDateInput.max = formatDateISO(adultDate);
+      }
+
+      function validatePasswordMatch() {
+        if (confirmInput.value && confirmInput.value !== passwordInput.value) {
+          confirmInput.setCustomValidity(
+            "Les mots de passe ne correspondent pas.",
+          );
+        } else {
+          confirmInput.setCustomValidity("");
+        }
+      }
+
+      function validateInterestsGroup() {
+        const oneChecked = interests.some((checkbox) => checkbox.checked);
+        const target = interests[0];
+        if (!oneChecked) {
+          target.setCustomValidity(
+            "Veuillez sélectionner au moins un centre d'intérêt.",
+          );
+        } else {
+          target.setCustomValidity("");
+        }
+        return oneChecked;
+      }
+
+      function getMessage(input) {
+        const entry = customMessages[input.id] || "Ce champ est invalide.";
+        if (typeof entry === "string") {
+          return entry;
+        }
+        if (input.validity.valueMissing && entry.valueMissing)
+          return entry.valueMissing;
+        if (input.validity.typeMismatch && entry.typeMismatch)
+          return entry.typeMismatch;
+        if (input.validity.patternMismatch && entry.patternMismatch)
+          return entry.patternMismatch;
+        if (input.validity.tooShort && entry.tooShort) return entry.tooShort;
+        if (input.validity.tooLong && entry.tooLong) return entry.tooLong;
+        if (input.validity.rangeOverflow && entry.rangeOverflow)
+          return entry.rangeOverflow;
+        if (input.validity.customError && entry.customError)
+          return entry.customError;
+        return "Ce champ est invalide.";
+      }
+
+      function showError(input) {
+        const errorSlot = document.getElementById(`${input.id}-error`);
+        if (!errorSlot) return;
+        errorSlot.textContent = input.validationMessage || "";
+      }
+
+      function setCustomMessageOnInvalid(input) {
+        input.addEventListener("invalid", () => {
+          input.setCustomValidity("");
+          if (!input.checkValidity()) {
+            input.setCustomValidity(getMessage(input));
+          }
+          showError(input);
+        });
+
+        input.addEventListener("input", () => {
+          input.setCustomValidity("");
+          if (input.id === "confirmationMotDePasse") {
+            validatePasswordMatch();
+          }
+          if (input.id === "motDePasse") {
+            validatePasswordMatch();
+          }
+          showError(input);
+        });
+      }
+
+      setAgeLimit();
+
+      const standardInputs = Array.from(
+        form.querySelectorAll(
+          "input:not([type='radio']):not([type='checkbox']), select, textarea",
+        ),
+      );
+      standardInputs.forEach(setCustomMessageOnInvalid);
+
+      const cguInput = document.getElementById("cgu");
+      cguInput.addEventListener("invalid", () => {
+        cguInput.setCustomValidity(cguInput.checked ? "" : customMessages.cgu);
+        showError(cguInput);
+      });
+      cguInput.addEventListener("input", () => {
+        cguInput.setCustomValidity("");
+        showError(cguInput);
+      });
+
+      const genreRadios = Array.from(
+        document.querySelectorAll('input[name="genre"]'),
+      );
+      genreRadios.forEach((radio) => {
+        radio.addEventListener("invalid", () => {
+          const errorSlot = document.getElementById("genre-error");
+          errorSlot.textContent = "Veuillez choisir un genre.";
+        });
+        radio.addEventListener("change", () => {
+          const errorSlot = document.getElementById("genre-error");
+          errorSlot.textContent = "";
+        });
+      });
+
+      interests.forEach((checkbox) => {
+        checkbox.addEventListener("change", () => {
+          validateInterestsGroup();
+          document.getElementById("interets-error").textContent = "";
+        });
+      });
+
+      form.addEventListener("submit", (event) => {
+        validatePasswordMatch();
+        const interestsOk = validateInterestsGroup();
+        if (!interestsOk) {
+          document.getElementById("interets-error").textContent =
+            "Veuillez sélectionner au moins un centre d'intérêt.";
+        }
+
+        if (!form.checkValidity() || !interestsOk) {
+          event.preventDefault();
+          form.reportValidity();
+        }
+      });
+    </script>
+  </body>
+</html>
