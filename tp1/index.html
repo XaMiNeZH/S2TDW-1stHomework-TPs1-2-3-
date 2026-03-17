@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Amine's Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Source+Sans+Pro:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Source Sans Pro', sans-serif;
+            line-height: 1.6;
+            color: #1a1a1a;
+            background-color: #ffffff;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Merriweather', serif;
+            font-weight: 700;
+            margin-top: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        h1 { font-size: 2.25rem; letter-spacing: -0.02em; }
+        h2 { font-size: 1.875rem; }
+        h3 { font-size: 1.5rem; }
+        h4 { font-size: 1.125rem; }
+
+        p { margin-bottom: 1rem; }
+        a { color: #0066cc; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        a:visited { color: #5a3d8a; }
+        strong, b { font-weight: 700; }
+        em, i { font-style: italic; }
+
+        nav {
+            background-color: #ffffff;
+            border-bottom: 1px solid #e0e0e0;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        @media (min-width: 640px)  { .nav-container { padding: 0 1.5rem; } }
+        @media (min-width: 1024px) { .nav-container { padding: 0 2rem; } }
+
+        .nav-brand {
+            font-family: 'Merriweather', serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #1a1a1a;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: #1a1a1a;
+            font-size: 0.9rem;
+            transition: color 0.2s;
+            text-decoration: none;
+        }
+
+        .nav-links a:hover { color: #0066cc; }
+
+        @media (max-width: 768px) { .nav-links { display: none; } }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        @media (min-width: 640px)  { .container { padding: 0 1.5rem; } }
+        @media (min-width: 1024px) { .container { padding: 0 2rem; } }
+
+        main { padding: 3rem 0; }
+
+        .content-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 310px;
+            gap: 3rem;
+            align-items: start;
+        }
+
+        @media (max-width: 768px) {
+            .content-wrapper { grid-template-columns: 1fr; gap: 2rem; }
+        }
+
+        .main-content { min-width: 0; }
+
+        .profile-card {
+            background-color: #f9f9f9;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 1.5rem;
+            width: 100%;
+            position: sticky;
+            top: 72px;
+        }
+
+        @media (max-width: 768px) { .profile-card { position: static; } }
+
+        .profile-card h2 {
+            font-size: 1.3rem;
+            margin-top: 0;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .hero-image-placeholder {
+            width: 100%;
+            aspect-ratio: 1 / 1.1;
+            border-radius: 6px;
+            margin-bottom: 0.75rem;
+            background: linear-gradient(135deg, #dce6f1 0%, #b8ccdf 100%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: #5a7fa3;
+            font-size: 0.75rem;
+            gap: 10px;
+        }
+
+        .avatar-circle {
+            width: 72px;
+            height: 72px;
+            border-radius: 50%;
+            background: #a0b8d0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.2rem;
+            color: #fff;
+        }
+
+        .image-caption {
+            font-size: 0.75rem;
+            color: #666;
+            font-style: italic;
+            text-align: center;
+            margin-bottom: 1.25rem;
+        }
+
+        .profile-card table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.78rem;
+        }
+
+        .profile-card table tbody tr { border-bottom: 1px solid #e0e0e0; }
+        .profile-card table tbody tr:last-child { border-bottom: none; }
+
+        .profile-card table td {
+            padding: 0.45rem 0;
+            padding-right: 0.5rem;
+            vertical-align: top;
+        }
+
+        .profile-card table td:first-child {
+            font-weight: 600;
+            color: #4a4a4a;
+            width: 85px;
+            white-space: nowrap;
+        }
+
+        .profile-card table a { color: #0066cc; }
+
+        section { margin-bottom: 3rem; }
+
+        .section-heading {
+            margin-top: 0;
+            border-bottom: 1px solid #e0e0e0;
+            padding-bottom: 0.5rem;
+        }
+
+        .prose { display: flex; flex-direction: column; gap: 0.75rem; }
+        .intro-text { margin-bottom: 2rem; }
+
+        /* ── SKILLS ── */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 1.25rem;
+            margin-top: 1rem;
+        }
+
+        .skill-category {
+            background: #f9f9f9;
+            border: 1px solid #e0e0e0;
+            border-radius: 6px;
+            padding: 1rem;
+        }
+
+        .skill-category h5 {
+            font-family: 'Source Sans Pro', sans-serif;
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.7px;
+            color: #666;
+            margin: 0 0 0.75rem 0;
+            padding-bottom: 0.4rem;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .skill-category.cat-dev h5    { color: #0066cc; border-color: #c5d8f5; }
+        .skill-category.cat-devops h5 { color: #1a7a4a; border-color: #b6dfcc; }
+        .skill-category.cat-data h5   { color: #7a4a00; border-color: #f0d9a8; }
+        .skill-category.cat-low h5    { color: #6b1a1a; border-color: #f0b8b8; }
+
+        .skill-category.cat-dev    { border-color: #c5d8f5; background: #f4f8ff; }
+        .skill-category.cat-devops { border-color: #b6dfcc; background: #f3fbf7; }
+        .skill-category.cat-data   { border-color: #f0d9a8; background: #fffbf3; }
+        .skill-category.cat-low    { border-color: #f0b8b8; background: #fff5f5; }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+            list-style: none;
+        }
+
+        .skill-tags li {
+            font-size: 0.75rem;
+            padding: 2px 8px;
+            border-radius: 3px;
+        }
+
+        .cat-dev    .skill-tags li { background: #e8f0fb; color: #0055aa; border: 1px solid #c5d8f5; }
+        .cat-devops .skill-tags li { background: #e6f5ee; color: #155e38; border: 1px solid #b6dfcc; }
+        .cat-data   .skill-tags li { background: #fdf4e0; color: #7a4a00; border: 1px solid #f0d9a8; }
+        .cat-low    .skill-tags li { background: #fdeaea; color: #6b1a1a; border: 1px solid #f0b8b8; }
+
+        .timeline-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.85rem;
+            margin-top: 1rem;
+        }
+
+        .timeline-table th {
+            background: #f0f0f0;
+            font-family: 'Source Sans Pro', sans-serif;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-align: left;
+            padding: 8px 12px;
+            border: 1px solid #e0e0e0;
+            color: #333;
+        }
+
+        .timeline-table td {
+            padding: 10px 12px;
+            border: 1px solid #e0e0e0;
+            vertical-align: top;
+        }
+
+        .timeline-table tr:nth-child(even) td { background: #fafafa; }
+
+        .timeline-table .entry-title {
+            font-weight: 700;
+            display: block;
+            margin-bottom: 2px;
+            font-size: 0.88rem;
+        }
+
+        .timeline-table .entry-org {
+            font-size: 0.8rem;
+            color: #444;
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        .timeline-table .entry-desc {
+            font-size: 0.78rem;
+            color: #666;
+            line-height: 1.45;
+        }
+
+        .timeline-table .tech-pill {
+            display: inline-block;
+            font-size: 0.68rem;
+            background: #e8f0fb;
+            color: #0055aa;
+            border: 1px solid #c5d8f5;
+            border-radius: 3px;
+            padding: 1px 6px;
+            margin: 3px 2px 0 0;
+        }
+
+        /* Type badge */
+        .type-badge {
+            display: inline-block;
+            font-family: 'Source Sans Pro', sans-serif;
+            font-size: 0.68rem;
+            font-weight: 700;
+            letter-spacing: 0.4px;
+            padding: 3px 9px;
+            border-radius: 20px;
+            white-space: nowrap;
+        }
+
+        .type-badge.formation {
+            background: #e6f5ee;
+            color: #155e38;
+            border: 1px solid #b6dfcc;
+        }
+
+        .type-badge.experience {
+            background: #e8f0fb;
+            color: #0055aa;
+            border: 1px solid #c5d8f5;
+        }
+
+        .col-period  { width: 110px; white-space: nowrap; }
+        .col-type    { width: 110px; }
+        .col-org     { width: 160px; }
+
+        /* ── PROJECTS ── */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .project-card {
+            border: 1px solid #e0e0e0;
+            border-radius: 6px;
+            padding: 1rem;
+            background: #fff;
+            transition: box-shadow 0.2s, border-color 0.2s;
+        }
+
+        .project-card:hover {
+            box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+            border-color: #b0c8e8;
+        }
+
+        .project-card h4 { font-size: 0.95rem; margin: 0 0 0.4rem; }
+
+        .project-tag {
+            display: inline-block;
+            font-size: 0.7rem;
+            background: #e8f0fb;
+            color: #0066cc;
+            border: 1px solid #c5d8f5;
+            border-radius: 3px;
+            padding: 1px 7px;
+            margin-bottom: 0.6rem;
+        }
+
+        .project-card p { font-size: 0.82rem; color: #555; margin: 0; line-height: 1.5; }
+
+        /* ── CONTACT ── */
+        .contact-cols {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-top: 1rem;
+        }
+
+        @media (max-width: 560px) { .contact-cols { grid-template-columns: 1fr; } }
+
+        .contact-block h5 {
+            font-family: 'Source Sans Pro', sans-serif;
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.7px;
+            color: #666;
+            margin: 0 0 0.75rem;
+        }
+
+        .contact-block ul { list-style: none; }
+
+        .contact-block ul li {
+            font-size: 0.88rem;
+            padding: 5px 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .contact-block ul li:last-child { border-bottom: none; }
+
+        footer {
+            border-top: 1px solid #e0e0e0;
+            padding: 2rem 0;
+            margin-top: 2rem;
+            font-size: 0.875rem;
+            color: #666;
+        }
+
+        .footer-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .footer-badges { display: flex; gap: 8px; }
+
+        .badge {
+            font-size: 0.7rem;
+            background: #f0f0f0;
+            border: 1px solid #e0e0e0;
+            padding: 3px 8px;
+            border-radius: 3px;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+
+<nav>
+    <div class="nav-container">
+        <a href="#" class="nav-brand">EZ-ZAHERY Ahmed Amine</a>
+        <ul class="nav-links">
+            <li><a href="#a-propos">Early life</a></li>
+            <li><a href="#competences">Skills</a></li>
+            <li><a href="#parcours">Parcours</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </div>
+</nav>
+
+<main>
+    <div class="container">
+        <div class="content-wrapper">
+
+            <div class="main-content">
+
+
+                <section id="a-propos">
+                    <div class="prose intro-text">
+                        <p>
+                            Je suis <strong>EZ-ZAHERY Ahmed Amine</strong>! Un élève ingénieur marocain en génie logiciel basé à Casablanca, avec une forte orientation vers les mathématiques, l'ingénierie des systèmes et l'optimisation des performances informatiques. Mon intérêt pour la technologie s'est construit très tôt à travers des expérimentations concrètes; modification de systèmes Android, exploration d'environnements logiciels personnalisés et compréhension progressive de l'interaction entre systèmes d'exploitation et matériel. Cette curiosité s'est transformée en un intérêt durable pour l'informatique bas niveau, l'optimisation des systèmes et les défis liés à la conception de solutions efficaces dans des contextes réels.
+                        </p>
+                        <p>
+                          Parallèlement, je développe une véritable affinité pour le raisonnement mathématique comme moyen d'analyser et de modéliser des phénomènes complexes. Je m'intéresse particulièrement à la modélisation mathématique et à la finance quantitative, domaines dans lesquels probabilités, méthodes computationnelles et optimisation se rencontrent pour éclairer la prise de décision. J'aborde les problèmes avec rigueur et créativité, en cherchant à relier les bases théoriques à leur mise en œuvre concrète, notamment dans l'étude des algorithmes, du comportement des systèmes et de l'analyse financière basée sur les données.
+                        </p>
+                    </div>
+                </section>
+
+
+                <section id="competences">
+                    <h3 class="section-heading">Skills</h3>
+                    <div class="skills-grid">
+                        <div class="skill-category cat-dev">
+                            <h5>Development</h5>
+                            <ul class="skill-tags">
+                                <li>JavaScript</li>
+                                <li>TypeScript</li>
+                                <li>React</li>
+                                <li>HTML5 / CSS3</li>
+                                <li>Java</li>
+                                <li>C</li>
+                                <li>Node.js</li>
+                                <li>Flask</li>
+                                <li>FastAPI</li>
+                                <li>REST API</li>
+                                <li>SQL</li>
+                            </ul>
+                        </div>
+                        <div class="skill-category cat-devops">
+                            <h5>DevOps &amp; Infrastructure</h5>
+                            <ul class="skill-tags">
+                                <li>Docker</li>
+                                <li>Kubernetes</li>
+                                <li>Terraform</li>
+                                <li>Ansible</li>
+                                <li>Apache</li>
+                                <li>Linux</li>
+                                <li>Redis</li>
+                                <li>CI/CD</li>
+                                <li>Git / GitHub</li>
+                            </ul>
+                        </div>
+                        <div class="skill-category cat-data">
+                            <h5>Data &amp; ML</h5>
+                            <ul class="skill-tags">
+                                <li>Python</li>
+                                <li>Pandas</li>
+                                <li>NumPy</li>
+                                <li>Scikit-learn</li>
+                                <li>NLP</li>
+                                <li>Matplotlib</li>
+                                <li>Power BI</li>
+                            </ul>
+                        </div>
+                        <div class="skill-category cat-low">
+                            <h5>Low-Level &amp; Systems</h5>
+                            <ul class="skill-tags">
+                                <li>Bash / Shell</li>
+                                <li>OpenCore</li>
+                                <li>Kernel Modules</li>
+                                <li>Kexts</li>
+                                <li>OS Internals</li>
+                                <li>Memory Management</li>
+                                <li>Custom ROMs</li>
+                                <li>Registry Tweaking</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+
+                <section id="parcours">
+                    <h3 class="section-heading">Parcours</h3>
+
+                    <table class="timeline-table" role="table" aria-label="Parcours académique et professionnel">
+                        <thead>
+                            <tr>
+                                <th scope="col" class="col-period">Période</th>
+                                <th scope="col" class="col-type">Type</th>
+                                <th scope="col" class="col-org">Établissement / Entreprise</th>
+                                <th scope="col">Titre &amp; Description</th>
+                                <th scope="col">Technologies</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>2025 – Présent</td>
+                                <td><span class="type-badge formation">Formation</span></td>
+                                <td>
+                                    ENSET Mohammedia<br>
+                                    <small style="color:#888">Mohammedia, MA</small>
+                                </td>
+                                <td>
+                                    <span class="entry-title">Élève Ingénieur — Génie Logiciel</span>
+                                    <span class="entry-desc">Cursus d'ingénierie couvrant les algorithmes, architectures logicielles, bases de données, systèmes distribués et gestion de projet.</span>
+                                </td>
+                                <td>
+                                    <span class="tech-pill">Java</span>
+                                    <span class="tech-pill">C</span>
+                                    <span class="tech-pill">Python</span>
+                                    <span class="tech-pill">SQL</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>2024 – 2025</td>
+                                <td><span class="type-badge experience">Expérience</span></td>
+                                <td>
+                                    Outlier<br>
+                                    <small style="color:#888">San Francisco, US</small>
+                                </td>
+                                <td>
+                                    <span class="entry-title">AI Trainer - Freelance</span>
+                                    <span class="entry-desc">Evaluated and refined large language model (LLM) outputs using RLHF guidelines to improve reasoning accuracy, safety, and contextual relevance. Contributed to the creation, review, and validation of training datasets across programming, SQL, statistics, and applied mathematics, ensuring high data quality and alignment with project standards in a remote, collaborative workflow.Evaluated and refined large language model (LLM) outputs using RLHF guidelines to improve reasoning accuracy, safety, and contextual relevance. Contributed to the creation, review, and validation of training datasets across programming, SQL, statistics, and applied mathematics, ensuring high data quality and alignment with project standards in a remote, collaborative workflow.</span>
+                                </td>
+                                <td>
+                                    <span class="tech-pill">Prompt Engineering</span>
+                                    <span class="tech-pill">Python</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>2023 – 2025</td>
+                                <td><span class="type-badge formation">Formation</span></td>
+                                <td>
+                                    Faculté des sciences Ben Msik Casablanca<br>
+                                    <small style="color:#888">Casablanca, MA</small>
+                                </td>
+                                <td>
+                                    <span class="entry-title">DEUG MIP Informatique</span>
+                                <td>
+                                    <span class="tech-pill">Mathematical Analysis</span>
+                                    <span class="tech-pill">Operating Systems</span>
+                                    <span class="tech-pill">Problem Solving</span>
+                                    <span class="tech-pill">Probability & Statistics</span>
+                                </td>
+                            </tr>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+                <section id="contact">
+                    <h3 class="section-heading">Contact</h3>
+                    <div class="contact-cols">
+                        <div class="contact-block">
+                            <h5>Coordonnées</h5>
+                            <ul>
+                                <li>📧 &nbsp;<a href="mailto:ezzaheryahmedamine@gmail.com">ezzaheryahmedamine@gmail.com</a></li>
+                                <li>📍 &nbsp;Casablanca, Maroc</li>
+                                <li>💼 &nbsp;Disponible dès maintenant</li>
+                            </ul>
+                        </div>
+                        <div class="contact-block">
+                            <h5>Réseaux sociaux</h5>
+                            <ul>
+                                <li><a href="https://github.com/XaMiNeZH" target="_blank" rel="noopener noreferrer">GitHub — @XaMiNeZH</a></li>
+                                <li><a href="https://linkedin.com/in/ahmed-amine-ez-zahery" target="_blank" rel="noopener noreferrer">LinkedIn — Ahmed Amine EZ-ZAHERY</a></li>
+                                <li><a href="https://twitter.com/XaMiNeZH" target="_blank" rel="noopener noreferrer">Twitter / X — @XaMiNeZH</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+            </div>
+            <aside class="profile-card">
+                <h2>EZ-ZAHERY Ahmed Amine</h2>
+
+                <img src="./IMG_8576.JPEG" alt="EZ-ZAHERY Ahmed Amine, Casablanca 2024" style="width:100%; border-radius:6px; margin-bottom:0.75rem; display:block; object-fit:cover; aspect-ratio: 1 / 1.1;">
+                <p class="image-caption">EZ-ZAHERY Ahmed Amine (2026)</p>
+
+                <table>
+                    <tbody>
+                        <tr>
+                            <td>Né</td>
+                            <td>Casablanca, Maroc</td>
+                        </tr>
+                        <tr>
+                            <td>Localisation</td>
+                            <td>Casablanca, MA</td>
+                        </tr>
+                        <tr>
+                            <td>Nationalité</td>
+                            <td>Marocain</td>
+                        </tr>
+                        <tr>
+                            <td>Formation</td>
+                            <td>Élève Ingénieur, Génie Logiciel</td>
+                        </tr>
+                        <tr>
+                            <td>Occupation</td>
+                            <td>Développeur, Étudiant</td>
+                        </tr>
+                        <tr>
+                            <td>Actif</td>
+                            <td>présent</td>
+                        </tr>
+                        <tr>
+                            <td>Connu pour</td>
+                            <td>Systems Programming, Full-Stack, ML</td>
+                        </tr>
+                        <tr>
+                            <td>Intérêts</td>
+                            <td>Finance Quantitative, OS Internals, Open Source</td>
+                        </tr>
+                        <tr>
+                            <td>Réseaux</td>
+                            <td>
+                                <a href="https://github.com/XaMiNeZH" target="_blank" rel="noopener noreferrer">GitHub</a> ·
+                                <a href="https://linkedin.com/in/ahmed-amine-ez-zahery" target="_blank" rel="noopener noreferrer">LinkedIn</a> ·
+                                <a href="https://twitter.com/XaMiNeZH" target="_blank" rel="noopener noreferrer">Twitter</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </aside>
+
+        </div>
+    </div>
+</main>
+
+<footer>
+    <div class="container">
+        <div class="footer-inner">
+            <p>© 2026 EZ-ZAHERY Ahmed Amine — Made with love.</p>
+            <div class="footer-badges">
+            </div>
+        </div>
+    </div>
+</footer>
+
+</body>
+</html>
