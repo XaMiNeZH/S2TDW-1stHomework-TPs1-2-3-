@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Maison.Verd — Architecture Intérieure</title>
+  <meta name="description" content="Maison.Verd, studio d'architecture intérieure haut de gamme basé à Paris. Design sur mesure pour espaces résidentiels et commerciaux." />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Maison.Verd — Architecture Intérieure" />
+  <meta property="og:description" content="Studio d'architecture intérieure haut de gamme basé à Paris." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://maisonverd.fr/" />
+  <meta property="og:image" content="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=1200" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    /* ── HERO ───────────────────── */
+    .hero {
+      min-height: 100svh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      padding: 0;
+    }
+    .hero-text {
+      display: flex; flex-direction: column; justify-content: center;
+      padding: clamp(2rem, 6vw, 6rem);
+      padding-top: calc(var(--nav-h) + 3rem);
+    }
+    .hero-text h1 { margin: .5rem 0 1.5rem; }
+    .hero-text h1 em {
+      font-style: italic; color: var(--accent);
+      display: block;
+    }
+    .hero-text p { font-size: 1.05rem; margin-bottom: 2.5rem; }
+    .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+
+    .hero-media {
+      position: relative; overflow: hidden;
+    }
+    .hero-media video,
+    .hero-media img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .hero-media::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(to right, var(--paper) 0%, transparent 18%);
+    }
+
+    /* ── STATS BAR ─────────────── */
+    .stats-bar {
+      background: var(--ink);
+      color: var(--white);
+      display: flex;
+      justify-content: center;
+      gap: 0;
+      padding: 0;
+    }
+    .stat-item {
+      flex: 1;
+      text-align: center;
+      padding: 2.5rem 1rem;
+      border-right: 1px solid rgba(255,255,255,.1);
+    }
+    .stat-item:last-child { border-right: none; }
+    .stat-item strong {
+      display: block;
+      font-family: 'Playfair Display', serif;
+      font-size: 2.8rem;
+      color: var(--gold);
+      line-height: 1;
+      margin-bottom: .3rem;
+    }
+    .stat-item span {
+      font-size: .78rem;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.45);
+    }
+
+    /* ── SERVICES PREVIEW ──────── */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5px;
+      background: rgba(0,0,0,.08);
+      margin-top: 3rem;
+    }
+    .service-card {
+      background: var(--white);
+      padding: 2.5rem 2rem;
+      transition: background .3s;
+    }
+    .service-card:hover { background: var(--cream); }
+    .service-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem; color: var(--gold);
+      opacity: .5; line-height: 1;
+      margin-bottom: 1.2rem;
+    }
+    .service-card h3 { margin-bottom: .7rem; }
+    .service-card p { font-size: .92rem; }
+    .service-link {
+      display: inline-flex; align-items: center; gap: .4rem;
+      margin-top: 1.5rem;
+      font-size: .8rem; font-weight: 500;
+      letter-spacing: .1em; text-transform: uppercase;
+      color: var(--accent); text-decoration: none;
+    }
+    .service-link::after { content: '→'; transition: transform .2s; }
+    .service-link:hover::after { transform: translateX(4px); }
+
+    /* ── TESTIMONIALS ──────────── */
+    .testimonials { background: var(--cream); }
+    .testi-wrap {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+    .testi-card {
+      background: var(--white);
+      padding: 2rem;
+      border-top: 3px solid var(--gold);
+      opacity: 0; transform: translateY(24px);
+      transition: opacity .5s ease, transform .5s ease;
+    }
+    .testi-card.visible { opacity: 1; transform: none; }
+    .testi-card:nth-child(2) { transition-delay: .1s; }
+    .testi-card:nth-child(3) { transition-delay: .2s; }
+    .testi-quote {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem; font-style: italic;
+      color: var(--ink); margin-bottom: 1.5rem;
+      line-height: 1.5;
+    }
+    .testi-quote::before { content: '\201C'; color: var(--gold); font-size: 1.4rem; }
+    .testi-author strong { font-size: .85rem; display: block; }
+    .testi-author span { font-size: .8rem; color: var(--muted); }
+
+    /* RESPONSIVE */
+    @media (max-width: 900px) {
+      .hero { grid-template-columns: 1fr; }
+      .hero-media { height: 55vw; }
+      .hero-media::after { background: linear-gradient(to bottom, var(--paper) 0%, transparent 20%); }
+      .services-grid { grid-template-columns: 1fr 1fr; }
+      .testi-wrap { grid-template-columns: 1fr; }
+      .stat-item strong { font-size: 2rem; }
+    }
+    @media (max-width: 580px) {
+      .services-grid { grid-template-columns: 1fr; }
+      .stats-bar { flex-wrap: wrap; }
+      .stat-item { flex: 0 0 50%; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a class="nav-logo" href="index.html">Maison<span>.</span>Verd</a>
+    <ul class="nav-links">
+      <li><a href="index.html" class="active">Accueil</a></li>
+      <li><a href="pages/about.html">À propos</a></li>
+      <li><a href="pages/services.html">Services</a></li>
+      <li><a href="pages/gallery.html">Galerie</a></li>
+      <li><a href="pages/contact.html" class="nav-cta">Contact</a></li>
+    </ul>
+  </nav>
+
+  <main>
+
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero-text">
+        <span class="section-label">Studio · Paris</span>
+        <h1>L'espace<em>réinventé.</em></h1>
+        <p>Architecture intérieure haut de gamme pour résidences et espaces commerciaux. Nous transformons chaque pièce en une expérience.</p>
+        <div class="hero-actions">
+          <a href="pages/services.html" class="btn btn-dark">Nos services</a>
+          <a href="pages/gallery.html" class="btn btn-outline">Voir la galerie</a>
+        </div>
+      </div>
+      <div class="hero-media">
+        <!-- Autoplay, muted, loop video de présentation -->
+        <video autoplay muted loop playsinline poster="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=1200&q=80">
+          <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4" />
+          <!-- Fallback image responsive -->
+          <picture>
+            <source media="(max-width:600px)"
+              srcset="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=600&q=75 600w" />
+            <source media="(max-width:1200px)"
+              srcset="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=900&q=80 900w" />
+            <img
+              src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=1200&q=80"
+              srcset="
+                https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=600&q=75 600w,
+                https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=900&q=80 900w,
+                https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=1200&q=85 1200w
+              "
+              sizes="(max-width:900px) 100vw, 50vw"
+              alt="Salon contemporain design Maison.Verd"
+              loading="eager"
+            />
+          </picture>
+        </video>
+      </div>
+    </section>
+
+    <!-- STATS -->
+    <div class="stats-bar">
+      <div class="stat-item"><strong>250+</strong><span>Projets réalisés</span></div>
+      <div class="stat-item"><strong>15</strong><span>Années d'expérience</span></div>
+      <div class="stat-item"><strong>98%</strong><span>Clients satisfaits</span></div>
+      <div class="stat-item"><strong>12</strong><span>Prix reçus</span></div>
+    </div>
+
+    <!-- SERVICES -->
+    <section>
+      <span class="section-label">Ce que nous faisons</span>
+      <h2>Nos expertises</h2>
+      <div class="services-grid">
+        <div class="service-card">
+          <div class="service-num">01</div>
+          <h3>Design intérieur</h3>
+          <p>Conception complète d'espaces résidentiels et commerciaux, du concept à la livraison.</p>
+          <a class="service-link" href="pages/services.html">En savoir plus</a>
+        </div>
+        <div class="service-card">
+          <div class="service-num">02</div>
+          <h3>Architecture</h3>
+          <p>Rénovations structurelles, extensions et constructions neuves en harmonie avec l'existant.</p>
+          <a class="service-link" href="pages/services.html">En savoir plus</a>
+        </div>
+        <div class="service-card">
+          <div class="service-num">03</div>
+          <h3>Conseil couleur</h3>
+          <p>Une palette de couleurs personnalisée pour chaque projet, en accord avec la lumière et les matières.</p>
+          <a class="service-link" href="pages/services.html">En savoir plus</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- TESTIMONIALS -->
+    <section class="testimonials">
+      <span class="section-label">Ils nous font confiance</span>
+      <h2>Témoignages</h2>
+      <div class="testi-wrap">
+        <div class="testi-card reveal">
+          <p class="testi-quote">Une équipe à l'écoute, des résultats au-delà de nos espérances. Notre appartement est méconnaissable — dans le bon sens du terme.</p>
+          <div class="testi-author"><strong>Sophie & Marc D.</strong><span>Paris 16e, résidentiel</span></div>
+        </div>
+        <div class="testi-card reveal">
+          <p class="testi-quote">Professionnalisme exemplaire du début à la fin. Ils ont su retranscrire parfaitement l'identité de notre boutique hôtelière.</p>
+          <div class="testi-author"><strong>Hôtel Le Cloître</strong><span>Aix-en-Provence, hôtellerie</span></div>
+        </div>
+        <div class="testi-card reveal">
+          <p class="testi-quote">Le délai était serré et ils ont livré sans compromettre la qualité. Je recommande sans hésiter.</p>
+          <div class="testi-author"><strong>Antoine R.</strong><span>Lyon, bureau privé</span></div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="footer-logo-text">Maison<span>.</span>Verd</div>
+        <p>Architecture intérieure haut de gamme depuis 2009. Nous façonnons des espaces qui inspirent.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Navigation</h4>
+        <ul>
+          <li><a href="index.html">Accueil</a></li>
+          <li><a href="pages/about.html">À propos</a></li>
+          <li><a href="pages/services.html">Services</a></li>
+          <li><a href="pages/gallery.html">Galerie</a></li>
+          <li><a href="pages/contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Services</h4>
+        <ul>
+          <li><a href="pages/services.html">Design intérieur</a></li>
+          <li><a href="pages/services.html">Architecture</a></li>
+          <li><a href="pages/services.html">Conseil couleur</a></li>
+          <li><a href="pages/services.html">Aménagement</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="mailto:hello@maisonverd.fr">hello@maisonverd.fr</a></li>
+          <li><a href="tel:+33123456789">+33 1 23 45 67 89</a></li>
+          <li><a href="pages/contact.html">12 Rue du Faubourg, Paris</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Maison.Verd — Tous droits réservés</span>
+      <span>Mentions légales · Politique de confidentialité · CGV</span>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

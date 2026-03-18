@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact — Maison.Verd</title>
+  <meta name="description" content="Contactez le studio Maison.Verd. Formulaire, téléphone, e-mail et plan d'accès." />
+  <meta property="og:title" content="Contact — Maison.Verd" />
+  <meta property="og:description" content="Prenez contact avec notre équipe pour votre projet." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://images.unsplash.com/photo-1497366216548-37526070297c?w=1200" />
+  <link rel="stylesheet" href="../css/style.css" />
+  <style>
+    /* ── PAGE HEADER ─────────────── */
+    .page-header {
+      padding: clamp(4rem, 8vw, 7rem) clamp(1.5rem, 5vw, 4rem) 3rem;
+      background: var(--cream);
+    }
+
+    /* ── CONTACT LAYOUT ──────────── */
+    .contact-wrap {
+      display: grid;
+      grid-template-columns: 1fr 1.6fr;
+      gap: 0;
+      min-height: 70vh;
+    }
+
+    /* ── CONTACT INFO PANEL ──────── */
+    .contact-info {
+      padding: clamp(2.5rem, 5vw, 4.5rem);
+      background: var(--ink); color: var(--white);
+    }
+    .contact-info h2 { color: var(--white); margin-bottom: 2.5rem; }
+    .info-block + .info-block { margin-top: 2rem; }
+    .info-label {
+      font-size: .7rem; font-weight: 500;
+      letter-spacing: .18em; text-transform: uppercase;
+      color: rgba(255,255,255,.3);
+      margin-bottom: .4rem;
+    }
+    .info-block a, .info-block p {
+      color: rgba(255,255,255,.8);
+      font-size: 1rem; text-decoration: none;
+      transition: color .2s;
+      max-width: none;
+    }
+    .info-block a:hover { color: var(--gold); }
+    .hours-row {
+      display: flex; justify-content: space-between;
+      border-bottom: 1px solid rgba(255,255,255,.06);
+      padding: .45rem 0;
+      font-size: .88rem;
+    }
+    .hours-row span:first-child { color: rgba(255,255,255,.5); }
+    .hours-row span:last-child { color: rgba(255,255,255,.85); }
+
+    /* ── FORM PANEL ──────────────── */
+    .contact-form-wrap {
+      padding: clamp(2.5rem, 5vw, 4.5rem);
+      background: var(--white);
+    }
+    .contact-form-wrap h2 { margin-bottom: 2rem; }
+
+    .form-row {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem;
+      margin-bottom: 1.2rem;
+    }
+    .form-group { display: flex; flex-direction: column; gap: .4rem; }
+    .form-group label {
+      font-size: .72rem; font-weight: 500;
+      letter-spacing: .15em; text-transform: uppercase;
+      color: var(--muted);
+    }
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      padding: .85rem 1rem;
+      background: var(--paper);
+      border: 1.5px solid transparent;
+      outline: none;
+      font-family: 'DM Sans', sans-serif;
+      font-size: .95rem;
+      color: var(--ink);
+      transition: border-color .25s, background .25s;
+      appearance: none;
+      border-radius: 0;
+    }
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      border-color: var(--accent);
+      background: var(--white);
+    }
+    .form-group input[type="file"] {
+      padding: .6rem .8rem;
+      font-size: .85rem; color: var(--muted);
+      cursor: pointer;
+    }
+    .form-group textarea { resize: vertical; min-height: 130px; }
+    .form-group select {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%237a7060' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");
+      background-repeat: no-repeat; background-position: right 1rem center;
+      padding-right: 2.5rem;
+    }
+
+    /* Radio group */
+    .radio-group { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .radio-label {
+      display: flex; align-items: center; gap: .5rem;
+      font-size: .88rem; color: var(--muted); cursor: pointer;
+      letter-spacing: 0; text-transform: none;
+    }
+    .radio-label input[type="radio"] {
+      width: 16px; height: 16px; accent-color: var(--accent);
+      padding: 0; background: transparent; border: none;
+    }
+
+    .form-full { margin-bottom: 1.2rem; }
+
+    /* Checkbox */
+    .checkbox-label {
+      display: flex; align-items: flex-start; gap: .7rem;
+      font-size: .85rem; color: var(--muted); cursor: pointer;
+      letter-spacing: 0; text-transform: none;
+    }
+    .checkbox-label input[type="checkbox"] {
+      width: 16px; height: 16px; margin-top: 2px;
+      accent-color: var(--accent); flex-shrink: 0;
+      padding: 0; background: transparent; border: none;
+    }
+
+    .form-submit { margin-top: 1.8rem; }
+    .btn-submit {
+      width: 100%;
+      padding: 1.1rem 2rem;
+      font-size: .85rem; font-weight: 500;
+      letter-spacing: .12em; text-transform: uppercase;
+      background: var(--ink); color: var(--white); border: none; cursor: pointer;
+      transition: background .25s;
+      font-family: 'DM Sans', sans-serif;
+    }
+    .btn-submit:hover { background: var(--accent); }
+
+    /* Success message */
+    .form-success {
+      display: none; text-align: center;
+      padding: 3rem 2rem; background: var(--cream);
+    }
+    .form-success h3 { color: var(--accent); margin-bottom: .5rem; }
+
+    /* ── MAP ──────────────────────── */
+    .map-section { padding: 0; }
+    .map-section iframe {
+      display: block; width: 100%; height: 420px; border: none;
+      filter: grayscale(20%) contrast(1.05);
+    }
+
+    @media (max-width: 860px) {
+      .contact-wrap { grid-template-columns: 1fr; }
+      .form-row { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a class="nav-logo" href="../index.html">Maison<span>.</span>Verd</a>
+    <ul class="nav-links">
+      <li><a href="../index.html">Accueil</a></li>
+      <li><a href="about.html">À propos</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="gallery.html">Galerie</a></li>
+      <li><a href="contact.html" class="active nav-cta">Contact</a></li>
+    </ul>
+  </nav>
+
+  <main>
+
+    <div class="page-header">
+      <span class="section-label">Parlons de votre projet</span>
+      <h1>Contact</h1>
+    </div>
+
+    <!-- CONTACT SPLIT -->
+    <div class="contact-wrap">
+
+      <!-- INFO PANEL -->
+      <div class="contact-info">
+        <h2>Prenons contact</h2>
+
+        <div class="info-block">
+          <div class="info-label">Adresse</div>
+          <p>12 Rue du Faubourg Saint-Antoine<br>75012 Paris, France</p>
+        </div>
+
+        <div class="info-block">
+          <div class="info-label">E-mail</div>
+          <a href="mailto:hello@maisonverd.fr">hello@maisonverd.fr</a>
+        </div>
+
+        <div class="info-block">
+          <div class="info-label">Téléphone</div>
+          <a href="tel:+33123456789">+33 1 23 45 67 89</a>
+        </div>
+
+        <div class="info-block">
+          <div class="info-label">Horaires d'ouverture</div>
+          <div class="hours-row"><span>Lundi – Vendredi</span><span>9h00 – 18h30</span></div>
+          <div class="hours-row"><span>Samedi</span><span>10h00 – 15h00</span></div>
+          <div class="hours-row"><span>Dimanche</span><span>Fermé</span></div>
+        </div>
+
+        <div class="info-block" style="margin-top:3rem">
+          <div class="info-label">Réseaux sociaux</div>
+          <div style="display:flex; gap:1rem; margin-top:.6rem">
+            <a href="#" style="color:rgba(255,255,255,.5); font-size:.85rem; transition:color .2s">Instagram</a>
+            <a href="#" style="color:rgba(255,255,255,.5); font-size:.85rem; transition:color .2s">Pinterest</a>
+            <a href="#" style="color:rgba(255,255,255,.5); font-size:.85rem; transition:color .2s">LinkedIn</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- FORM -->
+      <div class="contact-form-wrap">
+        <h2>Décrivez votre projet</h2>
+        <form id="contact-form" novalidate>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="prenom">Prénom *</label>
+              <input type="text" id="prenom" name="prenom" placeholder="Claire" required />
+            </div>
+            <div class="form-group">
+              <label for="nom">Nom *</label>
+              <input type="text" id="nom" name="nom" placeholder="Dupont" required />
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="email">E-mail *</label>
+              <input type="email" id="email" name="email" placeholder="claire@exemple.fr" required />
+            </div>
+            <div class="form-group">
+              <label for="tel">Téléphone</label>
+              <input type="tel" id="tel" name="tel" placeholder="+33 6 00 00 00 00" />
+            </div>
+          </div>
+
+          <div class="form-full form-group">
+            <label for="service">Service souhaité *</label>
+            <select id="service" name="service" required>
+              <option value="" disabled selected>Choisissez un service…</option>
+              <option value="design">Design intérieur</option>
+              <option value="architecture">Architecture</option>
+              <option value="couleur">Conseil couleur</option>
+              <option value="amenagement">Aménagement</option>
+              <option value="autre">Autre</option>
+            </select>
+          </div>
+
+          <div class="form-full form-group">
+            <label>Type de projet</label>
+            <div class="radio-group">
+              <label class="radio-label"><input type="radio" name="type" value="residentiel" checked /> Résidentiel</label>
+              <label class="radio-label"><input type="radio" name="type" value="commercial" /> Commercial</label>
+              <label class="radio-label"><input type="radio" name="type" value="hotellerie" /> Hôtellerie</label>
+              <label class="radio-label"><input type="radio" name="type" value="autre" /> Autre</label>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="budget">Budget estimé</label>
+              <select id="budget" name="budget">
+                <option value="" disabled selected>Sélectionner…</option>
+                <option>Moins de 20 000 €</option>
+                <option>20 000 – 50 000 €</option>
+                <option>50 000 – 150 000 €</option>
+                <option>Plus de 150 000 €</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="surface">Surface (m²)</label>
+              <input type="number" id="surface" name="surface" placeholder="ex. 85" min="1" />
+            </div>
+          </div>
+
+          <div class="form-full form-group">
+            <label for="message">Message *</label>
+            <textarea id="message" name="message" placeholder="Décrivez votre projet, vos contraintes, vos envies…" required></textarea>
+          </div>
+
+          <div class="form-full form-group">
+            <label for="pieces">Joindre des plans ou photos (optionnel)</label>
+            <input type="file" id="pieces" name="pieces" accept="image/*,.pdf" multiple />
+          </div>
+
+          <div class="form-full">
+            <label class="checkbox-label">
+              <input type="checkbox" name="rgpd" required />
+              J'accepte que mes données soient utilisées par Maison.Verd pour traiter ma demande, conformément à notre politique de confidentialité. *
+            </label>
+          </div>
+
+          <div class="form-submit">
+            <button type="submit" class="btn-submit">Envoyer ma demande →</button>
+          </div>
+        </form>
+
+        <div class="form-success" id="success-msg">
+          <h3>Message envoyé !</h3>
+          <p>Nous vous répondrons sous 48h ouvrées. À très bientôt.</p>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- MAP IFRAME -->
+    <div class="map-section">
+      <iframe
+        src="https://www.openstreetmap.org/export/embed.html?bbox=2.3600%2C48.8500%2C2.3750%2C48.8580&layer=mapnik&marker=48.8533%2C2.3692"
+        title="Localisation de Maison.Verd — Paris 12e"
+        loading="lazy"
+        allowfullscreen
+      ></iframe>
+    </div>
+
+  </main>
+
+  <footer>
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="footer-logo-text">Maison<span>.</span>Verd</div>
+        <p>Architecture intérieure haut de gamme depuis 2009. Nous façonnons des espaces qui inspirent.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Navigation</h4>
+        <ul>
+          <li><a href="../index.html">Accueil</a></li>
+          <li><a href="about.html">À propos</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="gallery.html">Galerie</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Services</h4>
+        <ul>
+          <li><a href="services.html">Design intérieur</a></li>
+          <li><a href="services.html">Architecture</a></li>
+          <li><a href="services.html">Conseil couleur</a></li>
+          <li><a href="services.html">Aménagement</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="mailto:hello@maisonverd.fr">hello@maisonverd.fr</a></li>
+          <li><a href="tel:+33123456789">+33 1 23 45 67 89</a></li>
+          <li><a href="contact.html">12 Rue du Faubourg, Paris</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 Maison.Verd — Tous droits réservés</span>
+      <span>Mentions légales · Politique de confidentialité · CGV</span>
+    </div>
+  </footer>
+
+  <script src="../js/main.js"></script>
+  <script>
+    document.getElementById('contact-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      this.style.display = 'none';
+      document.getElementById('success-msg').style.display = 'block';
+    });
+  </script>
+</body>
+</html>

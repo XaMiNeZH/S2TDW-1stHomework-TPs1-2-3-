@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>À propos — Maison.Verd</title>
+  <meta name="description" content="Découvrez l'équipe Maison.Verd, studio d'architecture intérieure parisien fondé en 2009." />
+  <meta property="og:title" content="À propos — Maison.Verd" />
+  <meta property="og:description" content="Rencontrez l'équipe passionnée derrière Maison.Verd." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?w=1200" />
+  <link rel="stylesheet" href="../css/style.css" />
+  <style>
+    /* ── HERO ABOUT ─────────────── */
+    .about-hero {
+      min-height: 52vh;
+      display: flex; align-items: flex-end;
+      padding: clamp(2rem, 5vw, 5rem);
+      background: var(--ink);
+      position: relative; overflow: hidden;
+    }
+    .about-hero-bg {
+      position: absolute; inset: 0;
+      background-image: url('https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?w=1400&q=80');
+      background-size: cover; background-position: center;
+      opacity: .35;
+    }
+    .about-hero-content { position: relative; z-index: 1; }
+    .about-hero h1 { color: var(--white); }
+    .about-hero h1 em { color: var(--gold); font-style: italic; }
+    .about-hero p { color: rgba(255,255,255,.6); margin-top: 1rem; }
+
+    /* ── MANIFESTO ──────────────── */
+    .manifesto { background: var(--cream); }
+    .manifesto-inner {
+      display: grid; grid-template-columns: 1fr 2fr; gap: 4rem; align-items: start;
+    }
+    .manifesto-inner blockquote {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.3rem, 3vw, 2rem);
+      font-style: italic;
+      color: var(--ink);
+      line-height: 1.4;
+      border-left: 3px solid var(--accent);
+      padding-left: 1.5rem;
+    }
+    .manifesto-inner blockquote cite {
+      display: block; margin-top: 1rem;
+      font-size: .85rem; font-style: normal;
+      font-family: 'DM Sans', sans-serif;
+      color: var(--muted);
+      letter-spacing: .1em; text-transform: uppercase;
+    }
+    .manifesto-body p + p { margin-top: 1rem; }
+
+    /* ── TEAM ───────────────────── */
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+    .team-member figure { margin: 0; }
+    .team-member figure img {
+      width: 100%; aspect-ratio: 3/4;
+      object-fit: cover; display: block;
+      filter: grayscale(20%);
+      transition: filter .4s;
+    }
+    .team-member figure:hover img { filter: grayscale(0); }
+    .team-member figcaption {
+      padding: 1rem 0 .5rem;
+    }
+    .team-member figcaption strong {
+      display: block;
+      font-family: 'Playfair Display', serif;
+      font-size: 1.05rem;
+    }
+    .team-member figcaption span {
+      font-size: .8rem; color: var(--muted);
+      letter-spacing: .05em;
+    }
+    .team-member figcaption p {
+      font-size: .88rem; margin-top: .5rem;
+    }
+
+    /* ── TIMELINE ───────────────── */
+    .timeline { background: var(--ink); color: var(--white); }
+    .timeline h2 { color: var(--white); }
+    .tl-list { margin-top: 3rem; border-left: 1px solid rgba(255,255,255,.15); padding-left: 2rem; }
+    .tl-item { position: relative; padding-bottom: 2.5rem; }
+    .tl-item::before {
+      content: '';
+      position: absolute; left: -2.4rem; top: .4rem;
+      width: 8px; height: 8px; border-radius: 50%;
+      background: var(--gold);
+    }
+    .tl-item:last-child { padding-bottom: 0; }
+    .tl-year {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem; color: var(--gold); line-height: 1;
+      margin-bottom: .4rem;
+    }
+    .tl-item h3 { color: var(--white); font-size: 1.1rem; }
+    .tl-item p { color: rgba(255,255,255,.5); font-size: .9rem; max-width: 50ch; }
+
+    @media (max-width: 900px) {
+      .manifesto-inner { grid-template-columns: 1fr; }
+      .team-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 480px) {
+      .team-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a class="nav-logo" href="../index.html">Maison<span>.</span>Verd</a>
+    <ul class="nav-links">
+      <li><a href="../index.html">Accueil</a></li>
+      <li><a href="about.html" class="active">À propos</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="gallery.html">Galerie</a></li>
+      <li><a href="contact.html" class="nav-cta">Contact</a></li>
+    </ul>
+  </nav>
+
+  <main>
+
+    <!-- HERO -->
+    <section class="about-hero">
+      <div class="about-hero-bg"></div>
+      <div class="about-hero-content">
+        <span class="section-label" style="color:var(--gold)">Notre histoire</span>
+        <h1>Façonner<em>l'extraordinaire.</em></h1>
+        <p>Depuis 2009, nous créons des espaces qui racontent des histoires.</p>
+      </div>
+    </section>
+
+    <!-- MANIFESTO -->
+    <section class="manifesto">
+      <span class="section-label">Notre philosophie</span>
+      <div class="manifesto-inner">
+        <blockquote>
+          "Un espace réussi, c'est un espace qu'on ne veut plus quitter."
+          <cite>— Claire Verdier, Fondatrice</cite>
+        </blockquote>
+        <div class="manifesto-body">
+          <p>Maison.Verd est né d'une conviction simple : chaque espace mérite une attention singulière. Pas de recettes toutes faites, pas de tendances appliquées mécaniquement — seulement une écoute attentive et une créativité ancrée dans le réel.</p>
+          <p>Notre studio réunit architectes, designers, coloristes et artisans autour d'une même ambition : livrer des projets qui transcendent les attentes, dans les délais et les budgets convenus.</p>
+          <p>De la villa privée au flagship commercial, nous abordons chaque mission comme un portrait — unique, personnel, intemporel.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- TEAM -->
+    <section>
+      <span class="section-label">Les talents</span>
+      <h2>Notre équipe</h2>
+      <div class="team-grid">
+        <div class="team-member reveal">
+          <figure>
+            <img
+              src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=400&q=80"
+              srcset="
+                https://images.unsplash.com/photo-1580489944761-15a19d654956?w=300&q=75 300w,
+                https://images.unsplash.com/photo-1580489944761-15a19d654956?w=500&q=80 500w
+              "
+              sizes="(max-width:480px) 90vw, 25vw"
+              alt="Claire Verdier, directrice artistique"
+              loading="lazy"
+            />
+            <figcaption>
+              <strong>Claire Verdier</strong>
+              <span>Fondatrice & Directrice artistique</span>
+              <p>Diplômée de l'ENSCI, Claire dirige la vision créative du studio depuis sa fondation.</p>
+            </figcaption>
+          </figure>
+        </div>
+        <div class="team-member reveal">
+          <figure>
+            <img
+              src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&q=80"
+              srcset="
+                https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&q=75 300w,
+                https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=500&q=80 500w
+              "
+              sizes="(max-width:480px) 90vw, 25vw"
+              alt="Théo Martin, architecte senior"
+              loading="lazy"
+            />
+            <figcaption>
+              <strong>Théo Martin</strong>
+              <span>Architecte senior</span>
+              <p>Spécialiste des rénovations de patrimoine, Théo apporte une rigueur technique sans égale.</p>
+            </figcaption>
+          </figure>
+        </div>
+        <div class="team-member reveal">
+          <figure>
+            <img
+              src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&q=80"
+              srcset="
+                https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=300&q=75 300w,
+                https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=500&q=80 500w
+              "
+              sizes="(max-width:480px) 90vw, 25vw"
+              alt="Léa Fontaine, coloriste"
+              loading="lazy"
+            />
+            <figcaption>
+              <strong>Léa Fontaine</strong>
+              <span>Coloriste & Matériaux</span>
+              <p>Passionnée de pigments et de textures, Léa crée les palettes signature de chaque projet.</p>
+            </figcaption>
+          </figure>
+        </div>
+        <div class="team-member reveal">
+          <figure>
+            <img
+              src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&q=80"
+              srcset="
+                https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=300&q=75 300w,
+                https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=500&q=80 500w
+              "
+              sizes="(max-width:480px) 90vw, 25vw"
+              alt="Karim Douffi, chef de projet"
+              loading="lazy"
+            />
+            <figcaption>
+              <strong>Karim Douffi</strong>
+              <span>Chef de projet</span>
+              <p>Coordinateur entre clients, artisans et fournisseurs, Karim garantit la fluidité de chaque chantier.</p>
+            </figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- TIMELINE -->
+    <section class="timeline">
+      <span class="section-label" style="color:var(--gold)">Nos jalons</span>
+      <h2>Depuis 2009</h2>
+      <div class="tl-list">
+        <div class="tl-item">
+          <div class="tl-year">2009</div>
+          <h3>Fondation du studio</h3>
+          <p>Claire Verdier crée Maison.Verd dans le Marais, avec une équipe de trois personnes.</p>
+        </div>
+        <div class="tl-item">
+          <div class="tl-year">2013</div>
+          <h3>Prix Architecture Intérieure APCI</h3>
+          <p>Récompense pour la rénovation d'un loft industriel à Saint-Denis.</p>
+        </div>
+        <div class="tl-item">
+          <div class="tl-year">2017</div>
+          <h3>Ouverture du pôle commercial</h3>
+          <p>Extension des activités aux espaces de vente, hôtellerie et restauration haut de gamme.</p>
+        </div>
+        <div class="tl-item">
+          <div class="tl-year">2024</div>
+          <h3>250e projet livré</h3>
+          <p>Un nouveau cap franchi, avec un rayonnement désormais national et quelques projets à l'international.</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="footer-logo-text">Maison<span>.</span>Verd</div>
+        <p>Architecture intérieure haut de gamme depuis 2009. Nous façonnons des espaces qui inspirent.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Navigation</h4>
+        <ul>
+          <li><a href="../index.html">Accueil</a></li>
+          <li><a href="about.html">À propos</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="gallery.html">Galerie</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Services</h4>
+        <ul>
+          <li><a href="services.html">Design intérieur</a></li>
+          <li><a href="services.html">Architecture</a></li>
+          <li><a href="services.html">Conseil couleur</a></li>
+          <li><a href="services.html">Aménagement</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="mailto:hello@maisonverd.fr">hello@maisonverd.fr</a></li>
+          <li><a href="tel:+33123456789">+33 1 23 45 67 89</a></li>
+          <li><a href="contact.html">12 Rue du Faubourg, Paris</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 Maison.Verd — Tous droits réservés</span>
+      <span>Mentions légales · Politique de confidentialité · CGV</span>
+    </div>
+  </footer>
+
+  <script src="../js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Services — Maison.Verd</title>
+  <meta name="description" content="Découvrez tous les services de Maison.Verd : design intérieur, architecture, conseil couleur, aménagement. Tarifs transparents." />
+  <meta property="og:title" content="Services — Maison.Verd" />
+  <meta property="og:description" content="Design intérieur, architecture et conseil couleur haut de gamme à Paris." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://images.unsplash.com/photo-1524758631624-e2822e304c36?w=1200" />
+  <link rel="stylesheet" href="../css/style.css" />
+  <style>
+    /* ── PAGE HEADER ─────────────── */
+    .page-header {
+      padding: clamp(4rem, 8vw, 7rem) clamp(1.5rem, 5vw, 4rem) 3rem;
+      background: var(--cream);
+      display: flex; align-items: flex-end; justify-content: space-between; gap: 2rem;
+      flex-wrap: wrap;
+    }
+    .page-header p { font-size: 1.05rem; max-width: 50ch; }
+
+    /* ── SERVICES DETAILS ────────── */
+    .services-list { display: flex; flex-direction: column; gap: 1.5px; background: rgba(0,0,0,.08); }
+
+    details {
+      background: var(--white);
+      overflow: hidden;
+    }
+    details[open] { background: var(--paper); }
+
+    summary {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 2rem clamp(1.5rem, 5vw, 4rem);
+      cursor: pointer;
+      list-style: none;
+      gap: 2rem;
+    }
+    summary::-webkit-details-marker { display: none; }
+    .sum-left { display: flex; align-items: center; gap: 1.5rem; }
+    .sum-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem; color: var(--gold); opacity: .5;
+      min-width: 2.5rem;
+    }
+    summary h3 { margin: 0; }
+    .sum-tag {
+      font-size: .72rem; font-weight: 500; letter-spacing: .12em;
+      text-transform: uppercase;
+      padding: .3rem .8rem;
+      background: var(--cream); color: var(--muted);
+      border-radius: 1rem;
+    }
+    .sum-icon {
+      width: 28px; height: 28px; border: 1.5px solid var(--ink); border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1rem; flex-shrink: 0;
+      transition: transform .3s, background .3s;
+    }
+    details[open] .sum-icon {
+      transform: rotate(45deg);
+      background: var(--ink); color: var(--white);
+    }
+
+    .details-body {
+      padding: 0 clamp(1.5rem, 5vw, 4rem) 2.5rem;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;
+    }
+    .details-body img {
+      width: 100%; aspect-ratio: 16/9; object-fit: cover;
+    }
+    .details-body ul {
+      list-style: none; margin-top: 1rem;
+    }
+    .details-body ul li {
+      padding: .5rem 0;
+      border-bottom: 1px solid rgba(0,0,0,.07);
+      font-size: .92rem; color: var(--muted);
+      display: flex; align-items: center; gap: .6rem;
+    }
+    .details-body ul li::before { content: '—'; color: var(--accent); }
+
+    /* ── PRICING TABLE ───────────── */
+    .pricing { background: var(--ink); color: var(--white); }
+    .pricing h2 { color: var(--white); }
+
+    .price-table-wrap { overflow-x: auto; margin-top: 3rem; }
+    table {
+      width: 100%; border-collapse: collapse;
+      font-size: .9rem;
+    }
+    thead th {
+      background: rgba(255,255,255,.06);
+      font-family: 'DM Sans', sans-serif;
+      font-size: .72rem; font-weight: 500;
+      letter-spacing: .15em; text-transform: uppercase;
+      color: rgba(255,255,255,.4);
+      padding: 1rem 1.5rem; text-align: left;
+      border-bottom: 1px solid rgba(255,255,255,.1);
+    }
+    thead th.highlight {
+      background: var(--accent); color: var(--white);
+    }
+    tbody td {
+      padding: 1rem 1.5rem;
+      border-bottom: 1px solid rgba(255,255,255,.06);
+      color: rgba(255,255,255,.75);
+      vertical-align: middle;
+    }
+    tbody tr:last-child td { border-bottom: none; }
+    tbody td:first-child { color: var(--white); font-weight: 500; }
+    td.check { color: var(--gold); font-size: 1.1rem; text-align: center; }
+    td.cross { color: rgba(255,255,255,.2); text-align: center; }
+    td.price {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem; color: var(--gold);
+      white-space: nowrap;
+    }
+    td.price-highlight {
+      background: rgba(200,82,42,.12);
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem; color: var(--accent);
+      white-space: nowrap;
+    }
+    .row-header td {
+      background: rgba(255,255,255,.04);
+      font-size: .72rem; letter-spacing: .15em;
+      text-transform: uppercase; color: rgba(255,255,255,.3);
+      padding: .6rem 1.5rem;
+    }
+
+    @media (max-width: 768px) {
+      .details-body { grid-template-columns: 1fr; }
+      .sum-tag { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a class="nav-logo" href="../index.html">Maison<span>.</span>Verd</a>
+    <ul class="nav-links">
+      <li><a href="../index.html">Accueil</a></li>
+      <li><a href="about.html">À propos</a></li>
+      <li><a href="services.html" class="active">Services</a></li>
+      <li><a href="gallery.html">Galerie</a></li>
+      <li><a href="contact.html" class="nav-cta">Contact</a></li>
+    </ul>
+  </nav>
+
+  <main>
+
+    <!-- HEADER -->
+    <div class="page-header">
+      <div>
+        <span class="section-label">Ce que nous proposons</span>
+        <h1>Nos services</h1>
+      </div>
+      <p>De la première esquisse à la remise des clés, nous vous accompagnons à chaque étape de votre projet.</p>
+    </div>
+
+    <!-- SERVICES DETAILS/SUMMARY -->
+    <section style="padding: 0; background: var(--paper);">
+      <div class="services-list">
+
+        <details open>
+          <summary>
+            <div class="sum-left">
+              <span class="sum-num">01</span>
+              <h3>Design intérieur</h3>
+              <span class="sum-tag">Résidentiel &amp; Commercial</span>
+            </div>
+            <div class="sum-icon">+</div>
+          </summary>
+          <div class="details-body">
+            <div>
+              <p>De la conception des plans jusqu'au choix des derniers accessoires, notre équipe prend en charge l'intégralité de votre projet de design intérieur.</p>
+              <ul>
+                <li>Audit et analyse de l'existant</li>
+                <li>Conception 3D et planches matières</li>
+                <li>Sélection mobilier & luminaires</li>
+                <li>Coordination des corps de métier</li>
+                <li>Suivi de chantier hebdomadaire</li>
+                <li>Livraison clé en main</li>
+              </ul>
+            </div>
+            <img
+              src="https://images.unsplash.com/photo-1524758631624-e2822e304c36?w=700&q=80"
+              srcset="
+                https://images.unsplash.com/photo-1524758631624-e2822e304c36?w=400&q=75 400w,
+                https://images.unsplash.com/photo-1524758631624-e2822e304c36?w=700&q=80 700w
+              "
+              sizes="(max-width:768px) 90vw, 45vw"
+              alt="Design intérieur salon contemporain"
+              loading="lazy"
+            />
+          </div>
+        </details>
+
+        <details>
+          <summary>
+            <div class="sum-left">
+              <span class="sum-num">02</span>
+              <h3>Architecture</h3>
+              <span class="sum-tag">Rénovation &amp; Construction</span>
+            </div>
+            <div class="sum-icon">+</div>
+          </summary>
+          <div class="details-body">
+            <div>
+              <p>Extensions, surélévations, restructurations : nos architectes DPLG gèrent vos projets de construction et de rénovation lourde de A à Z.</p>
+              <ul>
+                <li>Dépôt permis de construire</li>
+                <li>Maîtrise d'œuvre complète</li>
+                <li>Rénovations de patrimoine</li>
+                <li>Extensions et surélévations</li>
+                <li>Certifications HQE &amp; BBC</li>
+              </ul>
+            </div>
+            <img
+              src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=700&q=80"
+              srcset="
+                https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=400&q=75 400w,
+                https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=700&q=80 700w
+              "
+              sizes="(max-width:768px) 90vw, 45vw"
+              alt="Architecture chantier bâtiment"
+              loading="lazy"
+            />
+          </div>
+        </details>
+
+        <details>
+          <summary>
+            <div class="sum-left">
+              <span class="sum-num">03</span>
+              <h3>Conseil couleur</h3>
+              <span class="sum-tag">Palette &amp; Matières</span>
+            </div>
+            <div class="sum-icon">+</div>
+          </summary>
+          <div class="details-body">
+            <div>
+              <p>Une palette de couleurs juste transforme tout. Notre coloriste crée une harmonie chromatique sur mesure, en tenant compte de votre luminosité, vos matières et votre mode de vie.</p>
+              <ul>
+                <li>Analyse lumière naturelle</li>
+                <li>Planche couleurs & matières</li>
+                <li>Sélection peintures & revêtements</li>
+                <li>Coordination avec le mobilier existant</li>
+                <li>Remise de carnet de couleurs</li>
+              </ul>
+            </div>
+            <img
+              src="https://images.unsplash.com/photo-1505843513577-22bb7d21e455?w=700&q=80"
+              srcset="
+                https://images.unsplash.com/photo-1505843513577-22bb7d21e455?w=400&q=75 400w,
+                https://images.unsplash.com/photo-1505843513577-22bb7d21e455?w=700&q=80 700w
+              "
+              sizes="(max-width:768px) 90vw, 45vw"
+              alt="Échantillons de couleurs et matières"
+              loading="lazy"
+            />
+          </div>
+        </details>
+
+        <details>
+          <summary>
+            <div class="sum-left">
+              <span class="sum-num">04</span>
+              <h3>Aménagement</h3>
+              <span class="sum-tag">Optimisation d'espace</span>
+            </div>
+            <div class="sum-icon">+</div>
+          </summary>
+          <div class="details-body">
+            <div>
+              <p>Petite surface ou grand volume mal optimisé ? Nous pensons chaque mètre carré pour qu'il soit à la fois fonctionnel, beau et confortable.</p>
+              <ul>
+                <li>Plan d'aménagement optimisé</li>
+                <li>Mobilier sur mesure</li>
+                <li>Rangements intégrés</li>
+                <li>Acoustique et cloisonnement</li>
+                <li>Éclairage fonctionnel et décoratif</li>
+              </ul>
+            </div>
+            <img
+              src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=700&q=80"
+              srcset="
+                https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=400&q=75 400w,
+                https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=700&q=80 700w
+              "
+              sizes="(max-width:768px) 90vw, 45vw"
+              alt="Salon aménagement intérieur optimisé"
+              loading="lazy"
+            />
+          </div>
+        </details>
+
+      </div>
+    </section>
+
+    <!-- PRICING TABLE -->
+    <section class="pricing">
+      <span class="section-label" style="color:var(--gold)">Tarifs</span>
+      <h2>Nos formules</h2>
+      <div class="price-table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Prestation</th>
+              <th>Essentiel</th>
+              <th class="highlight">Signature</th>
+              <th>Prestige</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="row-header"><td colspan="4">Design intérieur</td></tr>
+            <tr>
+              <td>Visite conseil (2h)</td>
+              <td class="price">250 €</td>
+              <td class="price-highlight">inclus</td>
+              <td class="price">inclus</td>
+            </tr>
+            <tr>
+              <td>Plans & rendus 3D</td>
+              <td class="cross">—</td>
+              <td class="check">✓</td>
+              <td class="check">✓</td>
+            </tr>
+            <tr>
+              <td>Suivi de chantier</td>
+              <td class="cross">—</td>
+              <td class="check">✓</td>
+              <td class="check">✓</td>
+            </tr>
+            <tr>
+              <td>Livraison clé en main</td>
+              <td class="cross">—</td>
+              <td class="cross">—</td>
+              <td class="check">✓</td>
+            </tr>
+            <tr class="row-header"><td colspan="4">Conseil couleur</td></tr>
+            <tr>
+              <td>Audit luminosité</td>
+              <td class="check">✓</td>
+              <td class="check">✓</td>
+              <td class="check">✓</td>
+            </tr>
+            <tr>
+              <td>Planche matières complète</td>
+              <td class="cross">—</td>
+              <td class="check">✓</td>
+              <td class="check">✓</td>
+            </tr>
+            <tr>
+              <td rowspan="1">Honoraires (% travaux)</td>
+              <td class="price">5 %</td>
+              <td class="price-highlight">10 %</td>
+              <td class="price">15 %</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="footer-logo-text">Maison<span>.</span>Verd</div>
+        <p>Architecture intérieure haut de gamme depuis 2009. Nous façonnons des espaces qui inspirent.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Navigation</h4>
+        <ul>
+          <li><a href="../index.html">Accueil</a></li>
+          <li><a href="about.html">À propos</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="gallery.html">Galerie</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Services</h4>
+        <ul>
+          <li><a href="services.html">Design intérieur</a></li>
+          <li><a href="services.html">Architecture</a></li>
+          <li><a href="services.html">Conseil couleur</a></li>
+          <li><a href="services.html">Aménagement</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="mailto:hello@maisonverd.fr">hello@maisonverd.fr</a></li>
+          <li><a href="tel:+33123456789">+33 1 23 45 67 89</a></li>
+          <li><a href="contact.html">12 Rue du Faubourg, Paris</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 Maison.Verd — Tous droits réservés</span>
+      <span>Mentions légales · Politique de confidentialité · CGV</span>
+    </div>
+  </footer>
+
+  <script src="../js/main.js"></script>
+</body>
+</html>
